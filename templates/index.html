@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Captioning</title>
+    <style>
+      body {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 600px;
+        padding: 40px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-top: 0;
+        font-size: 28px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+      }
+
+      .file-label {
+        background-color: #ff9800;
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: background-color 0.3s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .file-label span {
+        margin-right: 10px;
+      }
+
+      .file-label:hover {
+        background-color: #ff7600;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      .caption-input {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      label[for="num-captions"] {
+        margin-right: 10px;
+        font-size: 18px;
+      }
+
+      input[type="number"] {
+        padding: 10px 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 80px;
+        font-size: 16px;
+      }
+
+      .submit-button {
+        background-color: #ff7600;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .submit-button:hover {
+        background-color: #ff5500;
+      }
+
+      .error {
+        color: red;
+        margin-top: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Image Captioning App</h1>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file-upload" class="file-label">
+          <span>Choose an image</span>
+          <input type="file" id="file-upload" name="file" accept="image/*" required>
+        </label>
+        <div class="caption-input">
+          <label for="num-captions">Number of Captions:</label>
+          <input type="number" id="num-captions" name="num_captions" min="1" max="25" value="3" required>
+        </div>
+        <input type="submit" value="Upload" class="submit-button">
+      </form>
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
